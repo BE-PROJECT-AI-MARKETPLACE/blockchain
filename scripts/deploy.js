@@ -16,9 +16,16 @@ async function main() {
   const AIServiceAddress = aiservice.target;
   console.log(` AIService Contract Address: ${AIServiceAddress}`);
 
+  const RequestService = await hre.ethers.getContractFactory("RequestService");
+  const requestservice = await RequestService.deploy();
+  await requestservice.waitForDeployment();
+  const RequestServiceAddress = requestservice.target;
+  console.log(` RequestService Contract Address: ${RequestServiceAddress}`);
+
   const contract = {
     AuthenticateAddress,
-    AIServiceAddress
+    AIServiceAddress,
+    RequestServiceAddress,
   };
   const filePath = path.join(__dirname, 'contract-address.json');
   console.log(filePath);

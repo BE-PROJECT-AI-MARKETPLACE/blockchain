@@ -39,10 +39,17 @@ contract Authentication{
         return allUsers;
     }
 
-    function login(string calldata _email,string calldata _password) external{
+    function login(string calldata _email,string calldata _password) external returns (string memory){
         // add check for non existing user and ask to register
-        require(keccak256(abi.encodePacked(_password)) == emailPasswordMap[_email],"Incorrect Credentials");
-        users[msg.sender].isLoggedIn = true;
+        string memory message= "";
+        if(keccak256(abi.encodePacked(_password)) == emailPasswordMap[_email]){
+              users[msg.sender].isLoggedIn = true;
+            message = "User Login Complete";
+        }else{
+           message = "Incorrect Credentials";
+        }
+        return message;
+        
     }
 
     function logout() external onlyLoggedIn{
