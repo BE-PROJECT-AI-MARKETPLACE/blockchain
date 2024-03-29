@@ -2,6 +2,8 @@
 
 pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/utils/Strings.sol";
+
 contract AIService{
 
     struct ProjectDetails{
@@ -27,15 +29,17 @@ contract AIService{
     //map relating service to owner of it;
     mapping(string => address) serviceOwner;
 
+    uint256 counter = 1;
     //function to add Service
     function addService(string memory _service_name,
                         string memory _service_overview,
                         string memory _service_provider, 
                         string memory _service_address,
                         string memory _projectURL,
-                        string memory _serviceID,
+                         
                         string memory _service_contributors) external{
 
+                            string memory _serviceID = Strings.toString(counter);
                             ProjectDetails memory newProjectDetails = ProjectDetails(
                                             _projectURL,
                                             _serviceID,
@@ -50,6 +54,7 @@ contract AIService{
                                         );
                             allServices.push(newService);
                             allService[_service_address] = newService;
+                            counter+=1;
                             // serviceOwner[_service_address] = msg.sender; 
     }
 
@@ -82,4 +87,13 @@ contract AIService{
         return allServices;
     }
 
+    function getService(string memory service_id) external view returns(Service memory){
+        Service memory ser;
+        for(uint256 i=0;i<allServices.length;i++){
+            if(keccak256(abi.encodePacked(allServices[i].service_details.serviceID)) == keccak256(abi.encodePacked(service_id))){
+                ser = allServices[i];
+            }
+        }
+        return ser;
+    }  
 }
