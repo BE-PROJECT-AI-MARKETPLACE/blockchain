@@ -6,7 +6,7 @@ contract RequestService {
         string name;
         string email;
         string phoneNumber;
-        string useCase;
+        string serviceTitle;
         string domain;
         string description;
         address requester;
@@ -19,7 +19,7 @@ contract RequestService {
         string memory _name,
         string memory _email,
         string memory _phoneNumber,
-        string memory _useCase,
+        string memory _serviceTitle,
         string memory _domain,
         string memory _description
     ) public {
@@ -27,7 +27,7 @@ contract RequestService {
             name: _name,
             email: _email,
             phoneNumber: _phoneNumber,
-            useCase: _useCase,
+            serviceTitle: _serviceTitle,
             domain: _domain,
             description: _description,
             requester: msg.sender,
@@ -53,7 +53,7 @@ contract RequestService {
         require(index < requests.length, "Index out of bounds");
 
         Request storage req = requests[index];
-        return (req.name, req.email, req.phoneNumber, req.useCase, req.domain, req.description, req.requester);
+        return (req.name, req.email, req.phoneNumber, req.serviceTitle, req.domain, req.description, req.requester);
     }
 
     function getAllRequests() public view returns (Request[] memory) {
