@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
+import "@openzeppelin/contracts/utils/Strings.sol";
 contract RequestService {
     struct Request {
+        string requestID;
         string name;
         string email;
         string phoneNumber;
@@ -14,7 +15,7 @@ contract RequestService {
     }
 
     Request[] public requests;
-
+ uint256 counter = 1;
     function addRequest(
         string memory _name,
         string memory _email,
@@ -23,7 +24,10 @@ contract RequestService {
         string memory _domain,
         string memory _description
     ) public {
+
+        string memory _requestID = Strings.toString(counter);
         Request memory newRequest = Request({
+            requestID : _requestID,
             name: _name,
             email: _email,
             phoneNumber: _phoneNumber,
@@ -35,6 +39,7 @@ contract RequestService {
         });
 
         requests.push(newRequest);
+        counter+=1;
     }
 
     function getRequestsCount() public view returns (uint) {
