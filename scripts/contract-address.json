@@ -1,5 +1,7 @@
 {
-  "AuthenticateAddress": "0x16a7E03f98510044b6bFBADcbAb6c8Ce434a317f",
-  "AIServiceAddress": "0x225e74E3F77b5Be0Cb0f3386260B6B24885FafCe",
-  "RequestServiceAddress": "0x3403021a7bf4a3Ce92F374B257D6067F27a8adC5"
+  "AuthenticateAddress": "0x9580d0b296466037e2589467b9ca04A1d262c95f",
+  "AIServiceAddress": "0x0Af673fE49cBfB2EF363c16fcB1B5a762dcab003",
+  "RequestServiceAddress": "0xC11406d0b8e2c92915317F37Fdba26FBca7b6e2a",
+  "daiAddress": "0x2587509e439F91d26211e258952657F589b85313",
+  "PaymentProcessorAddress": "0x9bBe38eEe912450B19F5Aa72A86dddA9952bBA73"
 }
