@@ -66,18 +66,36 @@ contract AIService{
                             counter+=1; 
     }
 
+
+    function stringToAddress(string memory _address) internal pure returns (address) {
+        bytes memory b = bytes(_address);
+        require(b.length == 42 && b[0] == '0' && (b[1] == 'x' || b[1] == 'X'), "Invalid address format");
+
+        uint result = 0;
+        for (uint i = 2; i < b.length; i++) {
+            uint char = uint(uint8(b[i]));
+            if (char >= 48 && char <= 57) {
+                result = result * 16 + (char - 48);
+            } else if (char >= 65 && char <= 70) {
+                result = result * 16 + (char - 55);
+            } else if (char >= 97 && char <= 102) {
+                result = result * 16 + (char - 87);
+            } else {
+                revert("Invalid character");
+            }
+        }
+        return address(uint160(result));
+    }
     //function to check if user has access to the service or not.
     // if not access is given
-    function giveUserAccess(string memory _service_name) external{
-        // bool notContains = false;
-        // for(uint256 i=0;i<userHasAccess[msg.sender].length;i++){
-        //     string memory temp= userHasAccess[msg.sender][i];
-        //     if(keccak256(abi.encodePacked(temp)) == keccak256(abi.encodePacked(_service_name))){
-        //         notContains = true;
-        //     }
-        // }
-        // require(notContains,"User already has access to service");
+    function giveUserAccess(string memory _service_name) external returns(bool){
+        for(uint256 i=0;i<userHasAccess[msg.sender].length;i++){
+            if(stringToAddress(nameAddress[_service_name]) == address(0)){
+                return false;
+            }
+        }
         userHasAccess[msg.sender].push(_service_name);
+        return true;
     }
 
     // function to get all services owned by a user :)

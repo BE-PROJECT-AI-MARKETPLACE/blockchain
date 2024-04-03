@@ -1,6 +1,6 @@
 {
-  "AuthenticateAddress": "0x09a78a1b4878116916fa0eC88Ba60682405b3deC",
-  "AIServiceAddress": "0xcd8e6d1294C087007669FEe5Cd5BAb7CF9eA08C9",
-  "RequestServiceAddress": "0x5204B595aE0221306264CC200C3C792bA36bD477",
-  "PaymentContractAddress": "0xf550CE47E45c78673Cfac1B50F1737fC8419ad50"
+  "AuthenticateAddress": "0x948e21d147D6A7EBe47e8D34d0B554b308d0b8ED",
+  "AIServiceAddress": "0xf9c407a96031f0b3DF53254CDB7fdc77bE774ca3",
+  "RequestServiceAddress": "0xA0B214aA0269FEE9Cac15ea97760D8889091e10A",
+  "PaymentContractAddress": "0x0B307DB845E164eaF0389f3C5E2E5A75913c3Db2"
 }
